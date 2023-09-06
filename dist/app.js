@@ -38,6 +38,6 @@ const connect = () => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 app.listen(4001, () => {
-    console.log(`App is running on port: 4001`);
+    console.log(`App is running on port: ${PORT}`);
 });
 connect();

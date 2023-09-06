@@ -26,6 +26,6 @@ const connect = async () => {
   }
 };
 app.listen(4001, () => {
-  console.log(`App is running on port: 4001`);
+  console.log(`App is running on port: ${PORT}`);
 });
 connect();
