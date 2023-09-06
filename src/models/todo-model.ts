@@ -108,7 +108,6 @@ class TodoClass implements ToDoTableColumns {
   `;
 
     const result = await db.request.query(query);
-    const totalRow = result.rowsAffected[0]
     const record = result.recordset
     const tasksWithPage = getDisplay(record, tasksPerPage)
     return tasksWithPage;

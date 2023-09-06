@@ -111,7 +111,6 @@ class TodoClass {
     FROM TO_DO_TABLE
   `;
             const result = yield database_1.default.request.query(query);
-            const totalRow = result.rowsAffected[0];
             const record = result.recordset;
             const tasksWithPage = (0, paginate_utils_1.default)(record, tasksPerPage);
             return tasksWithPage;
