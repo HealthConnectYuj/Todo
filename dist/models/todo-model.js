@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const get_date_utils_1 = __importDefault(require("../utils/get-date-utils"));
 const database_1 = __importDefault(require("../data/database"));
+const paginate_utils_1 = __importDefault(require("../utils/paginate-utils"));
 class TodoClass {
     constructor(todoObject) {
         this.task = todoObject.task;
@@ -100,6 +101,20 @@ class TodoClass {
             else {
                 return { deletedTask: false };
             }
+        });
+    }
+    //list
+    static listOfTask(tasksPerPage) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const query = `
+    SELECT taskId, task, doneFlag
+    FROM TO_DO_TABLE
+  `;
+            const result = yield database_1.default.request.query(query);
+            const totalRow = result.rowsAffected[0];
+            const record = result.recordset;
+            const tasksWithPage = (0, paginate_utils_1.default)(record, tasksPerPage);
+            return tasksWithPage;
         });
     }
 }

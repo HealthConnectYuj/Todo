@@ -69,9 +69,20 @@ const eraseTask: RequestHandler = async (req, res, next) => {
   }
 };
 
+const listTask: RequestHandler = async (req, res, next) => {
+  try {
+    const tasksPerPage = parseInt(req.params.TASK_PER_PAGE);
+    const taskInfo = await ToDoClass.listOfTask(tasksPerPage);
+    res.status(201).send(taskInfo);
+  } catch (error) {
+    return error;
+  }
+};
+
 export default {
   addTask,
   readTask,
   updateTask,
   eraseTask,
+  listTask
 };

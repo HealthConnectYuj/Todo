@@ -77,9 +77,20 @@ const eraseTask = (req, res, next) => __awaiter(void 0, void 0, void 0, function
         return error;
     }
 });
+const listTask = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const tasksPerPage = parseInt(req.params.TASK_PER_PAGE);
+        const taskInfo = yield todo_model_1.default.listOfTask(tasksPerPage);
+        res.status(201).send(taskInfo);
+    }
+    catch (error) {
+        return error;
+    }
+});
 exports.default = {
     addTask,
     readTask,
     updateTask,
     eraseTask,
+    listTask
 };

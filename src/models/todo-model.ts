@@ -1,5 +1,6 @@
 import getCurrentDateAndTime from "../utils/get-date-utils";
 import db from "../data/database";
+import getDisplay from "../utils/paginate-utils"
 
 interface ToDoTableColumns {
   task: string;
@@ -97,6 +98,20 @@ class TodoClass implements ToDoTableColumns {
     } else {
       return { deletedTask: false };
     }
+  }
+
+  //list
+  static async listOfTask(tasksPerPage: number) {
+    const query = `
+    SELECT taskId, task, doneFlag
+    FROM TO_DO_TABLE
+  `;
+
+    const result = await db.request.query(query);
+    const totalRow = result.rowsAffected[0]
+    const record = result.recordset
+    const tasksWithPage = getDisplay(record, tasksPerPage)
+    return tasksWithPage;
   }
 }
 
