@@ -60,7 +60,10 @@ class TodoClass {
   `;
             const result = yield database_1.default.request.query(query);
             const record = result.recordset[0];
-            return record;
+            if (result.rowsAffected[0] === 1) {
+                return record;
+            }
+            return ({ result: "no record found" });
         });
     }
     //update

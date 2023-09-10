@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import db from "./data/database";
 import toDoRoutes from "./routes/todo-route";
+import checkValidRoute from "./middlewares/check-todo-routes";
 
 const app = express();
 app.use(cors());
@@ -13,7 +14,8 @@ dotenv.config();
 const PORT = process.env.PORT;
 const SERVER = process.env.DB_SERVER;
 
-app.use("/toDo", toDoRoutes);
+// app.use(checkValidRoute)
+app.use("/toDo", toDoRoutes, checkValidRoute);
 
 const connect = async () => {
   try {
@@ -29,3 +31,4 @@ app.listen(4001, () => {
   console.log(`App is running on port: ${PORT}`);
 });
 connect();
+

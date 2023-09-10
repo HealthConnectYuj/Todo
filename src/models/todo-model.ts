@@ -59,7 +59,10 @@ class TodoClass implements ToDoTableColumns {
 
     const result = await db.request.query(query);
     const record = result.recordset[0];
-    return record;
+    if (result.rowsAffected[0] === 1){
+      return record;
+    }
+    return({result: "no record found"})
   }
 
   //update

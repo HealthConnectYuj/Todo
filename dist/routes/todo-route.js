@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const todo_controller_1 = __importDefault(require("../controllers/todo-controller"));
 const router = (0, express_1.Router)();
+// router.use(checkToDoRouteEndpoint)
 router.post("/create", todo_controller_1.default.addTask);
 router.get("/get/:TASK_ID", todo_controller_1.default.readTask);
 router.patch("/update/:TASK_ID", todo_controller_1.default.updateTask);
