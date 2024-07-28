@@ -4,7 +4,7 @@ const checkValidRoute: RequestHandler = (req: Request, res: Response, next: Next
 
 const { method, url } = req;
 const taskId =req.params.TASK_ID
-console.log(taskId)
+
   // Define the valid routes based on the route parameters (e.g., :TASK_ID)
   const validRoutes = [
     "/create",
